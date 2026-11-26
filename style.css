@@ -1,0 +1,205 @@
+/*
+ * The site of the app, for parents and the stores: its look follows the app's own
+ * (warm paper, flat colours, the rounded Baloo Bhaijaan 2). The font is served from the
+ * site itself, never from a font service, so a visit is seen by no one but the host.
+ */
+@font-face {
+  font-family: 'Baloo Bhaijaan 2';
+  src: url('fonts/BalooBhaijaan2_400Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Baloo Bhaijaan 2';
+  src: url('fonts/BalooBhaijaan2_700Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* One column of reading, a coloured band naming the page, short cards for the essentials. */
+:root {
+  --paper: #fff8ee;
+  --sheet: #fffdf7;
+  --ink: #3e3530;
+  --ink-soft: #6b5f56;
+  --line: #ecdcc6;
+  --band: #2b6cb0;
+  --band-edge: #1d4e86;
+  --on-band: #ffffff;
+  --leaf: #1f7a49;
+  --leaf-wash: #eaf7ef;
+  --sun-wash: #fff6df;
+  --sun-edge: #b87a00;
+  --link: #1d4e86;
+  --face: 'Baloo Bhaijaan 2', 'Segoe UI', Tahoma, 'Geeza Pro', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #1f1b18;
+    --sheet: #2a2420;
+    --ink: #f3ebe2;
+    --ink-soft: #c9bcb0;
+    --line: #4a3f37;
+    --band: #1d4e86;
+    --band-edge: #123459;
+    --leaf: #7fd3a3;
+    --leaf-wash: #1e3328;
+    --sun-wash: #3a2f15;
+    --sun-edge: #e0b24a;
+    --link: #9cc3f0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --paper: #1f1b18;
+  --sheet: #2a2420;
+  --ink: #f3ebe2;
+  --ink-soft: #c9bcb0;
+  --line: #4a3f37;
+  --band: #1d4e86;
+  --band-edge: #123459;
+  --leaf: #7fd3a3;
+  --leaf-wash: #1e3328;
+  --sun-wash: #3a2f15;
+  --sun-edge: #e0b24a;
+  --link: #9cc3f0;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--face);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.band {
+  background: var(--band);
+  border-bottom: 5px solid var(--band-edge);
+  color: var(--on-band);
+  padding-block: 1.75rem 1.5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  text-align: center;
+}
+.band .name {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.band .name a {
+  color: inherit;
+  text-decoration: none;
+}
+.band .what {
+  margin: 0.25rem 0 0;
+  font-size: 1.25rem;
+}
+
+main {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding-block: 1.5rem 3rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.languages a {
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  padding: 0.1rem 1rem;
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.updated {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.essentials {
+  background: var(--leaf-wash);
+  border: 2px solid var(--leaf);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+}
+.essentials h2 {
+  margin: 0 0 0.25rem;
+  color: var(--leaf);
+  font-size: 1.3rem;
+}
+.essentials ul {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+}
+
+section h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+section p,
+section ul {
+  margin: 0 0 0.5rem;
+}
+section ul {
+  padding-inline-start: 1.25rem;
+}
+
+a {
+  color: var(--link);
+}
+a:focus-visible {
+  outline: 3px solid var(--link);
+  outline-offset: 2px;
+}
+
+/* A fact the owner has not given yet: visible on the page so it is never forgotten. */
+.todo {
+  background: var(--sun-wash);
+  border: 1.5px dashed var(--sun-edge);
+  border-radius: 6px;
+  padding: 0 0.35rem;
+  white-space: nowrap;
+}
+
+.address {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-weight: 700;
+}
+
+.part {
+  border-top: 2px solid var(--line);
+  padding-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  padding-block: 0 2rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
